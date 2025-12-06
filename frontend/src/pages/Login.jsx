@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import api from "../api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -12,7 +12,7 @@ export default function Login() {
       const res = await api.post("/auth/jwt/create/", formData);
       localStorage.setItem("access_token", res.data.access);
       localStorage.setItem("refresh_token", res.data.refresh);
-      navigate("/"); // Redirect ke home
+      navigate("/dashboard");
     } catch (error) {
       alert("Login Gagal! Cek username/password.");
     }
@@ -43,6 +43,12 @@ export default function Login() {
         <button className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
           Masuk
         </button>
+        <div className="text-center text-sm">
+          Belum punya akun?{" "}
+          <Link to="/register" className="text-blue-600 hover:underline">
+            Daftar disini
+          </Link>
+        </div>
       </form>
     </div>
   );
