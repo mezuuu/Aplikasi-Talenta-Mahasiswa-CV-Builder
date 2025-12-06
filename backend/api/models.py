@@ -8,7 +8,7 @@ class StudentProfile(models.Model):
     prodi = models.CharField(max_length=100)
     bio = models.TextField(blank=True)
     photo = models.ImageField(upload_to='photos/', blank=True, null=True)
-    linkedin_link = models.URLField(blank=True)
+    linkedin_link = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.full_name
@@ -16,7 +16,17 @@ class StudentProfile(models.Model):
 class Skill(models.Model):
     student = models.ForeignKey(StudentProfile, related_name='skills', on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    level = models.CharField(max_length=20, choices=[('Beginner','Beginner'), ('Intermediate','Intermediate'), ('Expert','Expert')])
-
+    
     def __str__(self):
-        return f"{self.name} - {self.student.full_name}"
+        return self.name
+
+class Experience(models.Model):
+    student = models.ForeignKey(StudentProfile, related_name='experiences', on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)      
+    company = models.CharField(max_length=100)    
+    start_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True) 
+    description = models.TextField(blank=True)    
+    
+    def __str__(self):
+        return f"{self.title} at {self.company}"
