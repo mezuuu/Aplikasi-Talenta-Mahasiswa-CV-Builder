@@ -170,6 +170,56 @@ export default function ExperienceForm() {
                     </div>
                 </div>
             ))}
+
+            {/* Dashed separator */}
+            <div className="border-t border-dashed border-gray-300" />
+
+            {/* Help Text */}
+            <p className="text-sm text-gray-400">
+                In this section, list related employment experience in your last 10 years along with the dates.
+                Mention the most recent employment first.
+            </p>
+
+            {/* Navigation */}
+            <div className="flex justify-between items-center pt-4">
+                <button
+                    onClick={prevStep}
+                    className="flex items-center gap-2 text-gray-600 hover:text-gray-800 font-medium transition-colors"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                        <path
+                            fillRule="evenodd"
+                            d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                            clipRule="evenodd"
+                        />
+                    </svg>
+                    Back
+                </button>
+
+                <button
+                    onClick={nextStep}
+                    className="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-6 py-2.5 rounded-lg font-medium transition-colors duration-200"
+                >
+                    Next to Education
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                        <path
+                            fillRule="evenodd"
+                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                            clipRule="evenodd"
+                        />
+                    </svg>
+                </button>
+            </div>
         </div>
     );
 }
