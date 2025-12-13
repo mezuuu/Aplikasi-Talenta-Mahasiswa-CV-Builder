@@ -60,6 +60,31 @@ export default function Sidebar({ children }) {
             </li>
           </ul>
         </SidebarContext.Provider>
+        {/* Footer Admin Pengguna */}
+        <div className="border-t border-gray-700 flex p-3 text-white">
+          <img
+            src={Logo}
+            alt="Foto Profil John Doe"
+            className="w-10 h-10 rounded-full object-cover"
+          />
+          <div
+            className={`
+              flex justify-between items-center
+              overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
+            `}
+          >
+            <div className="leading-4 text-sm">
+              <h4 className="font-semibold">Andhika</h4>
+              <span className="text-xs text-gray-400">
+                Cowok_Klaten@gmail.com
+              </span>
+            </div>
+            <MoreVertical
+              size={20}
+              className="text-gray-400 hover:text-white cursor-pointer"
+            />
+          </div>
+        </div>
       </nav>
     </aside>
   );
