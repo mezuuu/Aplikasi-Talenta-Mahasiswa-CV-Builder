@@ -117,6 +117,85 @@ export default function ContactForm() {
                         placeholder="Doe"
                     />
                 </div>
+
+                {/* Date of Birth */}
+                <div>
+                    <label htmlFor="dateOfBirth" className="block text-sm font-medium text-gray-700 mb-1">
+                        Date of Birth
+                    </label>
+                    <input
+                        type="date"
+                        id="dateOfBirth"
+                        name="dateOfBirth"
+                        value={contact.dateOfBirth}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
+                    />
+                </div>
+
+                {/* City */}
+                <div>
+                    <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
+                        City
+                    </label>
+                    <input
+                        type="text"
+                        id="city"
+                        name="city"
+                        value={contact.city}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
+                        placeholder="Jakarta"
+                    />
+                </div>
+
+                {/* Postal Code */}
+                <div>
+                    <label htmlFor="postalCode" className="block text-sm font-medium text-gray-700 mb-1">
+                        Postal Code
+                    </label>
+                    <input
+                        type="text"
+                        id="postalCode"
+                        name="postalCode"
+                        value={contact.postalCode}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
+                        placeholder="12345"
+                    />
+                </div>
+
+                {/* Email */}
+                <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                        Email
+                    </label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={contact.email}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
+                        placeholder="john.doe@email.com"
+                    />
+                </div>
+
+                {/* Phone */}
+                <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                        Phone
+                    </label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={contact.phone}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
+                        placeholder="+62 812 3456 7890"
+                    />
+                </div>
             </div>
         </div>
     );
