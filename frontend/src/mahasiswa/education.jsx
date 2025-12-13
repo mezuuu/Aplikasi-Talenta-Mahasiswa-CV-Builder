@@ -1,7 +1,7 @@
 import { useCV } from './CVContext';
 
 export default function EducationForm() {
-    const { state, updateEducation, removeEducation } = useCV();
+    const { state, addEducation, updateEducation, removeEducation, nextStep, prevStep } = useCV();
     const { education } = state;
 
     const handleChange = (id, field, value) => {
@@ -128,6 +128,78 @@ export default function EducationForm() {
                     )}
                 </div>
             ))}
+
+            {/* Dashed separator */}
+            <div className="border-t border-dashed border-gray-300" />
+
+            {/* Add Button */}
+            <button
+                onClick={addEducation}
+                className="flex items-center gap-2 text-sky-500 hover:text-sky-600 font-medium transition-colors"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                >
+                    <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                        clipRule="evenodd"
+                    />
+                </svg>
+                Add Education
+            </button>
+
+            {/* Dashed separator */}
+            <div className="border-t border-dashed border-gray-300" />
+
+            {/* Help Text */}
+            <p className="text-sm text-gray-400">
+                In this section, list your level of education; include any degrees and educational achievements, if relevant. Include dates of your achievements.
+            </p>
+
+            {/* Navigation */}
+            <div className="flex justify-between items-center pt-4">
+                <button
+                    onClick={prevStep}
+                    className="flex items-center gap-2 text-gray-600 hover:text-gray-800 font-medium transition-colors"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                        <path
+                            fillRule="evenodd"
+                            d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                            clipRule="evenodd"
+                        />
+                    </svg>
+                    Back
+                </button>
+
+                <button
+                    onClick={nextStep}
+                    className="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-6 py-2.5 rounded-lg font-medium transition-colors duration-200"
+                >
+                    Next to Skills
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                        <path
+                            fillRule="evenodd"
+                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                            clipRule="evenodd"
+                        />
+                    </svg>
+                </button>
+            </div>
         </div>
     );
 }
