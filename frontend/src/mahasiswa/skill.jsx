@@ -55,6 +55,27 @@ export default function SkillForm() {
                             />
                         </div>
 
+                        {/* Level Selector */}
+                        <div className="flex-1">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Level - <span className="text-sky-500">{LEVELS.find((l) => l.value === skill.level)?.label}</span>
+                            </label>
+                            <div className="flex h-10">
+                                {LEVELS.map((level, levelIndex) => (
+                                    <button
+                                        key={level.value}
+                                        onClick={() => handleChange(skill.id, 'level', level.value)}
+                                        className={`flex-1 h-full transition-all border-r last:border-r-0 border-white/50 ${levelIndex <= getLevelIndex(skill.level)
+                                            ? 'bg-green-400 hover:bg-green-500'
+                                            : 'bg-gray-200 hover:bg-gray-300'
+                                            } ${levelIndex === 0 ? 'rounded-l-lg' : ''} ${levelIndex === LEVELS.length - 1 ? 'rounded-r-lg' : ''
+                                            }`}
+                                        title={level.label}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
                         {/* Remove Button */}
                         <button
                             onClick={() => removeSkill(skill.id)}
