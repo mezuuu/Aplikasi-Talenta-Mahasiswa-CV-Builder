@@ -32,6 +32,34 @@ export default function Sidebar({ children }) {
             {expanded ? <ChevronFirst size={20} /> : <ChevronLast size={20} />}
           </button>
         </div>
+        {/* Konten Menu Utama */}
+        <SidebarContext.Provider value={{ expanded }}>
+          <ul className="flex-1 px-3 py-2 space-y-2">
+            {/* Button 1 */}
+            <li>
+              <button className="w-full flex items-center gap-3 px-4 py-3 text-white rounded-lg hover:bg-gray-800 transition-colors">
+                <FaBookReader size={20} />
+                {expanded && (
+                  <span className="whitespace-nowrap transition-all duration-300">
+                    Dashboard
+                  </span>
+                )}
+              </button>
+            </li>
+
+            {/* Button 2 */}
+            <li>
+              <button className="w-full flex items-center gap-3 px-4 py-3 text-white rounded-lg hover:bg-gray-800 transition-colors">
+                <FiLogOut size={20} />
+                {expanded && (
+                  <span className="whitespace-nowrap transition-all duration-300">
+                    Log out
+                  </span>
+                )}
+              </button>
+            </li>
+          </ul>
+        </SidebarContext.Provider>
       </nav>
     </aside>
   );
