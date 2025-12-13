@@ -9,5 +9,30 @@ const SidebarContext = createContext();
 export default function Sidebar({ children }) {
   const [expanded, setExpanded] = useState(true);
 
-  return <div></div>;
+  return (
+    <aside className="h-screen fixed top-0 left-0 z-50">
+      <nav className="h-full flex flex-col bg-gray-900 border-r border-gray-700 shadow-xl">
+        {/* Header dan Tombol Toggle */}
+        <div
+          className={`py-4 pr-2 pl-10 flex items-center text-white transition-all duration-300
+    ${expanded ? "justify-between pl-12" : "justify-center pl-0"}
+  `}
+        >
+          {expanded && (
+            <span className="whitespace-nowrap transition-all duration-300 font-bold text-2xl pl-5">
+              Miaw Family
+            </span>
+          )}
+
+          <button
+            onClick={() => setExpanded((curr) => !curr)}
+            className="p-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors "
+            aria-label={expanded ? "Tutup Sidebar" : "Buka Sidebar"}
+          >
+            {expanded ? <ChevronFirst size={20} /> : <ChevronLast size={20} />}
+          </button>
+        </div>
+      </nav>
+    </aside>
+  );
 }
