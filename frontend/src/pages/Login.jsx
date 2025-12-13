@@ -12,7 +12,7 @@ export default function Login() {
       const res = await api.post("/auth/jwt/create/", formData);
       localStorage.setItem("access_token", res.data.access);
       localStorage.setItem("refresh_token", res.data.refresh);
-      navigate("/dashboard");
+      navigate("/cv-builder");
     } catch (error) {
       alert("Login Gagal! Cek username/password.");
     }
@@ -28,6 +28,7 @@ export default function Login() {
         <input
           className="w-full border p-2 mb-2 rounded"
           placeholder="Username"
+          value={formData.username}
           onChange={(e) =>
             setFormData({ ...formData, username: e.target.value })
           }
@@ -36,6 +37,7 @@ export default function Login() {
           className="w-full border p-2 mb-4 rounded"
           type="password"
           placeholder="Password"
+          value={formData.password}
           onChange={(e) =>
             setFormData({ ...formData, password: e.target.value })
           }
