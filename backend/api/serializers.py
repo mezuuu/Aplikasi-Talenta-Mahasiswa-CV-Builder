@@ -19,4 +19,4 @@ class StudentProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StudentProfile
-        fields = ['id', 'nim', 'full_name', 'email', 'prodi', 'bio', 'photo', 'linkedin_link', 'skills', 'experiences']
+        fields = ['id', 'nim', 'full_name', 'email', 'prodi', 'bio', 'photo', 'linkedin_link', 'skills', 'experiences', 'is_active']
