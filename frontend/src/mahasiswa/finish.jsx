@@ -191,6 +191,37 @@ export default function FinishForm() {
                 </div>
             </div>
 
+            {/* Summary Card */}
+            <div className="bg-gradient-to-r from-sky-50 to-blue-50 p-6 rounded-xl border border-sky-100">
+                <h2 className="text-lg font-semibold text-gray-800 mb-4">CV Summary</h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div className="bg-white p-4 rounded-lg shadow-sm">
+                        <div className="text-2xl font-bold text-sky-500">
+                            {hasContact ? '✓' : '—'}
+                        </div>
+                        <div className="text-sm text-gray-600">Contact Info</div>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg shadow-sm">
+                        <div className="text-2xl font-bold text-sky-500">{experienceCount}</div>
+                        <div className="text-sm text-gray-600">Experience(s)</div>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg shadow-sm">
+                        <div className="text-2xl font-bold text-sky-500">{educationCount}</div>
+                        <div className="text-sm text-gray-600">Education(s)</div>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg shadow-sm">
+                        <div className="text-2xl font-bold text-sky-500">{skillsCount}</div>
+                        <div className="text-sm text-gray-600">Skill(s)</div>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg shadow-sm">
+                        <div className="text-2xl font-bold text-sky-500">
+                            {hasSummary ? '✓' : '—'}
+                        </div>
+                        <div className="text-sm text-gray-600">Summary</div>
+                    </div>
+                </div>
+            </div>
+
             {/* Simpan Biodata Button */}
             <div className="pt-2">
                 <button
@@ -240,6 +271,11 @@ export default function FinishForm() {
                     💾 Data akan ditampilkan di halaman "Talenta Terbaru"
                 </p>
             </div>
+
+            {/* Tip */}
+            <p className="text-sm text-gray-400 text-center">
+                💡 Tip: The PDF will be generated from the preview on the right. Make sure it looks good!
+            </p>
 
             {/* Navigation */}
             <div className="flex justify-start pt-4">
