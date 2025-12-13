@@ -222,41 +222,6 @@ export default function FinishForm() {
                 </div>
             </div>
 
-            {/* Quick Edit Links */}
-            <div className="flex flex-wrap gap-2">
-                <span className="text-sm text-gray-500">Quick edit:</span>
-                <button
-                    onClick={() => setStep(0)}
-                    className="text-sm text-sky-500 hover:text-sky-600 underline"
-                >
-                    Contact
-                </button>
-                <button
-                    onClick={() => setStep(1)}
-                    className="text-sm text-sky-500 hover:text-sky-600 underline"
-                >
-                    Experience
-                </button>
-                <button
-                    onClick={() => setStep(2)}
-                    className="text-sm text-sky-500 hover:text-sky-600 underline"
-                >
-                    Education
-                </button>
-                <button
-                    onClick={() => setStep(3)}
-                    className="text-sm text-sky-500 hover:text-sky-600 underline"
-                >
-                    Skills
-                </button>
-                <button
-                    onClick={() => setStep(4)}
-                    className="text-sm text-sky-500 hover:text-sky-600 underline"
-                >
-                    About
-                </button>
-            </div>
-
             {/* Download Button */}
             <div className="pt-4">
                 <button
@@ -287,8 +252,8 @@ export default function FinishForm() {
                     onClick={handleSaveBiodata}
                     disabled={isSaving}
                     className={`w-full flex items-center justify-center gap-3 ${saveStatus === 'success'
-                            ? 'bg-green-500 hover:bg-green-600'
-                            : 'bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700'
+                        ? 'bg-green-500 hover:bg-green-600'
+                        : 'bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700'
                         } text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
                     {isSaving ? (
