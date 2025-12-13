@@ -1,8 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import StudentViewSet
-from .views import SkillViewSet
-from .views import ExperienceViewSet
+from .views import StudentViewSet, SkillViewSet, ExperienceViewSet, get_current_user
 
 router = DefaultRouter()
 router.register(r'students', StudentViewSet)
@@ -11,4 +9,5 @@ router.register(r'experiences', ExperienceViewSet, basename='experience')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('users/me/', get_current_user, name='current-user'),
 ]
