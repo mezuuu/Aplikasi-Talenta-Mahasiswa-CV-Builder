@@ -67,6 +67,107 @@ export default function ExperienceForm() {
                     </button>
 
                     <div className="text-sm font-medium text-gray-500">Experience {index + 1}</div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {/* Employer */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Employer
+                            </label>
+                            <input
+                                type="text"
+                                value={exp.employer}
+                                onChange={(e) => handleChange(exp.id, 'employer', e.target.value)}
+                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
+                                placeholder="Company Name"
+                            />
+                        </div>
+
+                        {/* Job Title */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Job Title
+                            </label>
+                            <input
+                                type="text"
+                                value={exp.jobTitle}
+                                onChange={(e) => handleChange(exp.id, 'jobTitle', e.target.value)}
+                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
+                                placeholder="Software Engineer"
+                            />
+                        </div>
+
+                        {/* City */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                City
+                            </label>
+                            <input
+                                type="text"
+                                value={exp.city}
+                                onChange={(e) => handleChange(exp.id, 'city', e.target.value)}
+                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
+                                placeholder="Jakarta"
+                            />
+                        </div>
+
+                        {/* Start Date */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Start Date
+                            </label>
+                            <input
+                                type="text"
+                                value={exp.startDate}
+                                onChange={(e) => handleChange(exp.id, 'startDate', e.target.value)}
+                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
+                                placeholder="Jan 2020"
+                            />
+                        </div>
+
+                        {/* End Date */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                End Date
+                            </label>
+                            <input
+                                type="text"
+                                value={exp.endDate}
+                                onChange={(e) => handleChange(exp.id, 'endDate', e.target.value)}
+                                disabled={exp.current}
+                                className={`w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all ${exp.current ? 'bg-gray-100 text-gray-400' : ''
+                                    }`}
+                                placeholder="Dec 2023"
+                            />
+                        </div>
+
+                        {/* Current Job Checkbox */}
+                        <div className="flex items-center">
+                            <label className="flex items-center gap-2 cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    checked={exp.current}
+                                    onChange={(e) => handleChange(exp.id, 'current', e.target.checked)}
+                                    className="w-4 h-4 text-sky-500 border-gray-300 rounded focus:ring-sky-500"
+                                />
+                                <span className="text-sm text-gray-700">I currently work here</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    {/* Description */}
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Description
+                        </label>
+                        <textarea
+                            value={exp.description}
+                            onChange={(e) => handleChange(exp.id, 'description', e.target.value)}
+                            rows={3}
+                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all resize-none"
+                            placeholder="Describe your responsibilities and achievements..."
+                        />
+                    </div>
                 </div>
             ))}
         </div>
