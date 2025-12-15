@@ -5,18 +5,23 @@ const CVDocument = React.forwardRef((props, ref) => (
     <div className="grid grid-cols-12 min-h-[1120px]">
 
       <div className="col-span-4 bg-blue-800 text-white p-8">
-        <div className="flex justify-center mb-6">
-          <div className="w-28 h-28 rounded-full bg-blue-600 flex items-center justify-center text-4xl">
-            👤
-          </div>
-        </div>
-
         <h3 className="font-bold border-b mb-2">ABOUT ME</h3>
-        <p className="text-sm">Tentang saya</p>
       </div>
 
       <div className="col-span-8 p-10">
-        CONTENT
+        <h1 className="text-3xl font-bold">Nama Lengkap</h1>
+
+        <section className="mt-8">
+          <h2 className="font-bold border-b">WORK EXPERIENCE</h2>
+        </section>
+
+        <section className="mt-8">
+          <h2 className="font-bold border-b">EDUCATION</h2>
+        </section>
+
+        <section className="mt-8">
+          <h2 className="font-bold border-b">SKILLS</h2>
+        </section>
       </div>
     </div>
   </div>
