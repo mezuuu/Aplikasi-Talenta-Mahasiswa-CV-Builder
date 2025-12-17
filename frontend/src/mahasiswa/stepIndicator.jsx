@@ -14,9 +14,9 @@ export default function StepIndicator() {
     const { currentStep } = state;
 
     return (
-        <div className="bg-[#303f9f] py-4 px-6">
+        <div className="bg-[#303f9f] py-4 px-8">
             {/* Step Labels */}
-            <div className="flex justify-between items-center mb-3 max-w-xl mx-auto">
+            <div className="flex justify-between items-center mb-3">
                 {steps.map((step) => (
                     <button
                         key={step.index}
@@ -34,7 +34,7 @@ export default function StepIndicator() {
             </div>
 
             {/* Progress Line with Dots */}
-            <div className="relative flex items-center justify-between max-w-xl mx-auto">
+            <div className="relative flex items-center justify-between">
                 {/* Background Line */}
                 <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-[#5c6bc0] -translate-y-1/2" />
 
