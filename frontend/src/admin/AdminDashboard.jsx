@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 import Sidebar from "./sidebar";
-import { FiChevronRight } from "react-icons/fi";
+import { FiChevronRight, FiSearch, FiDownload, FiFilter } from "react-icons/fi";
 
 export default function AdminDashboard() {
     const [expanded, setExpanded] = useState(true);
@@ -11,6 +11,8 @@ export default function AdminDashboard() {
     const [loading, setLoading] = useState(true);
     const [selectedStudent, setSelectedStudent] = useState(null);
     const [togglingId, setTogglingId] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [sortOrder, setSortOrder] = useState("default");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -45,6 +47,11 @@ export default function AdminDashboard() {
             setStudents(students.map(s =>
                 s.id === studentId ? { ...s, is_active: res.data.is_active } : s
             ));
+
+            // Update selected student if it's the one being toggled
+            if (selectedStudent?.id === studentId) {
+                setSelectedStudent(prev => ({ ...prev, is_active: res.data.is_active }));
+            }
         } catch (error) {
             console.error("Error toggling student status", error);
         } finally {
@@ -55,6 +62,49 @@ export default function AdminDashboard() {
     const handleCardClick = (student) => {
         setSelectedStudent(selectedStudent?.id === student.id ? null : student);
     };
+
+    const handleExport = () => {
+        const headers = ["ID", "Name", "NIM", "Prodi", "Status"];
+        const csvContent = [
+            headers.join(","),
+            ...filteredStudents.map(s => [
+                s.id,
+                `"${s.full_name}"`,
+                s.nim,
+                `"${s.prodi}"`,
+                s.is_active !== false ? "Active" : "Inactive"
+            ].join(","))
+        ].join("\n");
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.setAttribute("href", url);
+        link.setAttribute("download", "students_export.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    // Filter and Sort Logic
+    const filteredStudents = students.filter(student => {
+        const term = searchTerm.toLowerCase();
+        // SEARCH ONLY BY NAME
+        return student.full_name?.toLowerCase().includes(term);
+    }).sort((a, b) => {
+        if (sortOrder === "asc") {
+            return a.full_name.localeCompare(b.full_name);
+        } else if (sortOrder === "desc") {
+            return b.full_name.localeCompare(a.full_name);
+        } else if (sortOrder === "active_first") {
+            // Active (true) first, then Inactive (false)
+            return (b.is_active === false ? 0 : 1) - (a.is_active === false ? 0 : 1);
+        } else if (sortOrder === "inactive_first") {
+            // Inactive (false) first, then Active (true)
+            return (a.is_active === false ? 0 : 1) - (b.is_active === false ? 0 : 1);
+        }
+        return 0;
+    });
 
     if (loading) {
         return (
@@ -83,9 +133,60 @@ export default function AdminDashboard() {
                     <p className="text-gray-600">Selamat datang, {user?.username}</p>
                 </div>
 
+                {/* Controls */}
+                <div className="max-w-4xl mx-auto mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                    {/* Search with Integrated Count */}
+                    <div className="relative w-full md:w-1/2">
+                        <div className="relative">
+                            <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg" />
+                            <input
+                                type="text"
+                                placeholder="Search..."
+                                className="w-full pl-12 pr-20 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white shadow-sm"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                            <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 font-medium text-sm">
+                                {filteredStudents.length} CV
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex gap-4 items-center">
+                        {/* Export */}
+                        <button
+                            onClick={handleExport}
+                            className="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors"
+                        >
+                            <FiDownload className="text-lg" />
+                            Export
+                        </button>
+
+                        {/* Sort */}
+                        <div className="relative group">
+                            <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-300 shadow-sm cursor-pointer hover:bg-gray-50">
+                                <FiFilter className="text-gray-500" />
+                                <select
+                                    value={sortOrder}
+                                    onChange={(e) => setSortOrder(e.target.value)}
+                                    className="appearance-none bg-transparent border-none focus:outline-none text-gray-700 font-medium cursor-pointer pr-4"
+                                    style={{ backgroundImage: 'none' }}
+                                >
+                                    <option value="default">Sort: Default</option>
+                                    <option value="asc">Name (A-Z)</option>
+                                    <option value="desc">Name (Z-A)</option>
+                                    <option value="active_first">Active First</option>
+                                    <option value="inactive_first">Inactive First</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 {/* Student Cards */}
                 <div className="max-w-4xl mx-auto space-y-4">
-                    {students.map((student) => (
+                    {filteredStudents.map((student) => (
                         <div
                             key={student.id}
                             onClick={() => handleCardClick(student)}
@@ -145,7 +246,7 @@ export default function AdminDashboard() {
                         </div>
                     ))}
 
-                    {students.length === 0 && (
+                    {filteredStudents.length === 0 && (
                         <div className="bg-white rounded-2xl p-8 text-center text-gray-500">
                             Belum ada data mahasiswa
                         </div>
@@ -175,8 +276,8 @@ export default function AdminDashboard() {
                                         {selectedStudent.full_name}
                                     </h2>
                                     <span className={`px-3 py-1 rounded-full text-sm font-medium ${selectedStudent.is_active !== false
-                                            ? 'bg-green-100 text-green-800'
-                                            : 'bg-red-100 text-red-800'
+                                        ? 'bg-green-100 text-green-800'
+                                        : 'bg-red-100 text-red-800'
                                         }`}>
                                         {selectedStudent.is_active !== false ? 'Aktif' : 'Nonaktif'}
                                     </span>
