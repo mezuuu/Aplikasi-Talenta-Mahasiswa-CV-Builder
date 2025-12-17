@@ -4,7 +4,7 @@ import { useCV } from './CVContext';
 import Preview from './Preview';
 import api from '../api';
 
-export default function FinishForm() {
+export default function FinishForm({ handleLogout }) {
     const { state, prevStep, setStep, updateContact } = useCV();
     const { contact, experience, education, skills, about } = state;
     const previewRef = useRef(null);
@@ -46,8 +46,8 @@ export default function FinishForm() {
             // Save/update student profile
             const profileData = {
                 full_name: fullName,
-                nim: contact.nim || '',
-                prodi: contact.prodi || 'Informatika',
+                nim: about.nim || contact.nim || '',
+                prodi: about.prodi || contact.prodi || 'Informatika',
                 bio: about.summary || '',
                 linkedin_link: contact.linkedin || '',
             };
@@ -108,7 +108,7 @@ export default function FinishForm() {
     const experienceCount = experience.length;
     const educationCount = education.length;
     const skillsCount = skills.length;
-    const hasSummary = about.summary.trim().length > 0;
+    const hasSummary = about.summary?.trim().length > 0;
     const hasContact = contact.firstName || contact.lastName || contact.email;
 
     return (
@@ -116,9 +116,9 @@ export default function FinishForm() {
             {/* Header */}
             <div>
                 <h1 className="text-2xl font-bold text-gray-800">
-                    <span className="text-sky-500">🎉 Great job!</span> Your CV is ready
+                    <span className="text-[#2596be]">🎉 Great job!</span> Your CV is ready
                 </h1>
-                <p className="text-gray-500 mt-1">
+                <p className="text-gray-500 mt-1 text-sm">
                     Review your CV, add optional details, and download it as a PDF.
                 </p>
             </div>
@@ -131,7 +131,7 @@ export default function FinishForm() {
                 <p className="text-sm text-gray-500 mb-4">
                     These fields are optional and will be shown in the CV sidebar.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
                     {/* Nationality */}
                     <div>
                         <label htmlFor="nationality" className="block text-sm font-medium text-gray-700 mb-1">
@@ -143,8 +143,8 @@ export default function FinishForm() {
                             name="nationality"
                             value={contact.nationality}
                             onChange={handleChange}
-                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
-                            placeholder="Indonesia"
+                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2596be] focus:border-[#2596be] outline-none transition-all"
+                            placeholder=""
                         />
                     </div>
 
@@ -158,7 +158,7 @@ export default function FinishForm() {
                             name="visaStatus"
                             value={contact.visaStatus}
                             onChange={handleChange}
-                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
+                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2596be] focus:border-[#2596be] outline-none transition-all"
                         >
                             <option value="">Select...</option>
                             <option value="Citizen">Citizen</option>
@@ -179,7 +179,7 @@ export default function FinishForm() {
                             name="maritalStatus"
                             value={contact.maritalStatus}
                             onChange={handleChange}
-                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
+                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2596be] focus:border-[#2596be] outline-none transition-all"
                         >
                             <option value="">Select...</option>
                             <option value="Single">Single / Lajang</option>
@@ -192,34 +192,58 @@ export default function FinishForm() {
             </div>
 
             {/* Summary Card */}
-            <div className="bg-gradient-to-r from-sky-50 to-blue-50 p-6 rounded-xl border border-sky-100">
+            <div className="bg-gradient-to-r from-[#2596be]/10 to-blue-50 p-6 rounded-xl border border-[#2596be]/20">
                 <h2 className="text-lg font-semibold text-gray-800 mb-4">CV Summary</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <div className="bg-white p-4 rounded-lg shadow-sm">
-                        <div className="text-2xl font-bold text-sky-500">
+                        <div className="text-2xl font-bold text-[#2596be]">
                             {hasContact ? '✓' : '—'}
                         </div>
                         <div className="text-sm text-gray-600">Contact Info</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg shadow-sm">
-                        <div className="text-2xl font-bold text-sky-500">{experienceCount}</div>
+                        <div className="text-2xl font-bold text-[#2596be]">{experienceCount}</div>
                         <div className="text-sm text-gray-600">Experience(s)</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg shadow-sm">
-                        <div className="text-2xl font-bold text-sky-500">{educationCount}</div>
+                        <div className="text-2xl font-bold text-[#2596be]">{educationCount}</div>
                         <div className="text-sm text-gray-600">Education(s)</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg shadow-sm">
-                        <div className="text-2xl font-bold text-sky-500">{skillsCount}</div>
+                        <div className="text-2xl font-bold text-[#2596be]">{skillsCount}</div>
                         <div className="text-sm text-gray-600">Skill(s)</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg shadow-sm">
-                        <div className="text-2xl font-bold text-sky-500">
+                        <div className="text-2xl font-bold text-[#2596be]">
                             {hasSummary ? '✓' : '—'}
                         </div>
                         <div className="text-sm text-gray-600">Summary</div>
                     </div>
                 </div>
+            </div>
+
+            {/* Download Button */}
+            <div className="pt-4">
+                <button
+                    onClick={handlePrint}
+                    className="w-full flex items-center justify-center gap-3 bg-[#2596be] hover:bg-[#1e7a9a] text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-200"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                        />
+                    </svg>
+                    Download CV as PDF
+                </button>
             </div>
 
             {/* Simpan Biodata Button */}
@@ -272,13 +296,8 @@ export default function FinishForm() {
                 </p>
             </div>
 
-            {/* Tip */}
-            <p className="text-sm text-gray-400 text-center">
-                💡 Tip: The PDF will be generated from the preview on the right. Make sure it looks good!
-            </p>
-
             {/* Navigation */}
-            <div className="flex justify-start pt-4">
+            <div className="flex justify-between items-center pt-4">
                 <button
                     onClick={prevStep}
                     className="flex items-center gap-2 text-gray-600 hover:text-gray-800 font-medium transition-colors"
@@ -295,8 +314,36 @@ export default function FinishForm() {
                             clipRule="evenodd"
                         />
                     </svg>
-                    Back to About
+                    Back
                 </button>
+
+                {handleLogout && (
+                    <button
+                        onClick={handleLogout}
+                        className="flex items-center justify-center gap-2 bg-[#dc3545] hover:bg-[#c82333] text-white px-6 py-2.5 rounded-lg font-medium transition-colors duration-200"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                            />
+                        </svg>
+                        Log Out
+                    </button>
+                )}
+            </div>
+
+            {/* Hidden Preview for Print */}
+            <div className="hidden">
+                <Preview ref={previewRef} forPrint={true} />
             </div>
         </div>
     );

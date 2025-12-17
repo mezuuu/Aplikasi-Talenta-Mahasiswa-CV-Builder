@@ -21,7 +21,7 @@ export default function Login() {
       if (user.is_staff || user.is_superuser) {
         navigate("/admin/dashboard");
       } else {
-        navigate("/dashboard");
+        navigate("/mahasiswa");
       }
     } catch (error) {
       alert("Login Gagal! Cek username/password.");

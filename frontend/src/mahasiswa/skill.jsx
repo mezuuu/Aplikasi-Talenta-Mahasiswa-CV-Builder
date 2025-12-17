@@ -23,10 +23,10 @@ export default function SkillForm() {
             {/* Header */}
             <div>
                 <h1 className="text-2xl font-bold text-gray-800">
-                    <span className="text-sky-500">Tell us</span> about your skill
+                    <span className="text-[#2596be]">Tell us</span> about your skill
                 </h1>
-                <p className="text-gray-500 mt-1">
-                    Pick 6 skills that match the job ad.
+                <p className="text-gray-500 mt-1 text-sm">
+                    pick 6 skill that match the job ad.
                 </p>
             </div>
 
@@ -37,7 +37,7 @@ export default function SkillForm() {
             {skills.map((skill, index) => (
                 <div key={skill.id} className="space-y-3 relative">
                     <div className="text-sm text-gray-500">
-                        {LEVELS.find((l) => l.value === skill.level)?.label || 'Skillful'}
+                        {LEVELS.find((l) => l.value === skill.level)?.label || 'Experienced'}
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-4 items-start md:items-end">
@@ -50,15 +50,15 @@ export default function SkillForm() {
                                 type="text"
                                 value={skill.name}
                                 onChange={(e) => handleChange(skill.id, 'name', e.target.value)}
-                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
-                                placeholder="JavaScript"
+                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2596be] focus:border-[#2596be] outline-none transition-all"
+                                placeholder=""
                             />
                         </div>
 
-                        {/* Level Selector */}
+                        {/* Level Selector - KEEP AS IS per user request */}
                         <div className="flex-1">
                             <label className="block text-sm font-medium text-gray-700 mb-1">
-                                Level - <span className="text-sky-500">{LEVELS.find((l) => l.value === skill.level)?.label}</span>
+                                Level - <span className="text-[#2596be]">{LEVELS.find((l) => l.value === skill.level)?.label}</span>
                             </label>
                             <div className="flex h-10">
                                 {LEVELS.map((level, levelIndex) => (
@@ -110,7 +110,7 @@ export default function SkillForm() {
             {/* Add Button */}
             <button
                 onClick={addSkill}
-                className="flex items-center gap-2 text-sky-500 hover:text-sky-600 font-medium transition-colors"
+                className="flex items-center gap-2 text-[#2596be] hover:text-[#1e7a9a] font-medium transition-colors"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -124,15 +124,18 @@ export default function SkillForm() {
                         clipRule="evenodd"
                     />
                 </svg>
-                Add Skill
+                Add Employment
             </button>
+
+            {/* Dashed separator */}
+            <div className="border-t border-dashed border-gray-300" />
 
             {/* Settings Toggles */}
             <div className="flex flex-wrap gap-6 pt-2">
                 {/* View as Tags Toggle */}
                 <label className="flex items-center gap-3 cursor-pointer">
                     <div
-                        className={`relative w-11 h-6 rounded-full transition-colors ${settings.viewSkillsAsTags ? 'bg-sky-500' : 'bg-gray-200'
+                        className={`relative w-11 h-6 rounded-full transition-colors ${settings.viewSkillsAsTags ? 'bg-[#2596be]' : 'bg-gray-300'
                             }`}
                         onClick={() => updateSettings({ viewSkillsAsTags: !settings.viewSkillsAsTags })}
                     >
@@ -141,13 +144,13 @@ export default function SkillForm() {
                                 }`}
                         />
                     </div>
-                    <span className="text-sm text-gray-600">View skills as tags</span>
+                    <span className="text-sm text-gray-500">View skills as tags</span>
                 </label>
 
                 {/* Hide Level Toggle */}
                 <label className="flex items-center gap-3 cursor-pointer">
                     <div
-                        className={`relative w-11 h-6 rounded-full transition-colors ${settings.hideExperienceLevel ? 'bg-sky-500' : 'bg-gray-200'
+                        className={`relative w-11 h-6 rounded-full transition-colors ${settings.hideExperienceLevel ? 'bg-[#2596be]' : 'bg-gray-300'
                             }`}
                         onClick={() => updateSettings({ hideExperienceLevel: !settings.hideExperienceLevel })}
                     >
@@ -156,7 +159,7 @@ export default function SkillForm() {
                                 }`}
                         />
                     </div>
-                    <span className="text-sm text-gray-600">Hide Experience level</span>
+                    <span className="text-sm text-gray-500">Hide Experience level</span>
                 </label>
             </div>
 
@@ -183,9 +186,9 @@ export default function SkillForm() {
 
                 <button
                     onClick={nextStep}
-                    className="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-6 py-2.5 rounded-lg font-medium transition-colors duration-200"
+                    className="flex items-center gap-2 bg-[#2596be] hover:bg-[#1e7a9a] text-white px-6 py-2.5 rounded-lg font-medium transition-colors duration-200"
                 >
-                    Next to About
+                    Next to Experience
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5"
