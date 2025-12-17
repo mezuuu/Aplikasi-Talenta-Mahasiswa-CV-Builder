@@ -11,8 +11,10 @@ export default function Home() {
     api
       .get("/api/students/")
       .then((res) => {
-        setStudents(res.data);
-        setFilteredStudents(res.data);
+        // Filter only active students (backup safety in case backend filter fails)
+        const activeStudents = res.data.filter(student => student.is_active !== false);
+        setStudents(activeStudents);
+        setFilteredStudents(activeStudents);
       })
       .catch((err) => console.error(err));
   }, []);
