@@ -20,6 +20,8 @@ const initialState = {
     skills: [],
     about: {
         summary: '',
+        nim: '',           // NIM mahasiswa (tidak ditampilkan di CV preview, hanya untuk database)
+        prodi: '',         // Program Studi mahasiswa (tidak ditampilkan di CV preview, hanya untuk database)
     },
     currentStep: 0,
     settings: {

@@ -9,6 +9,7 @@ class StudentProfile(models.Model):
     bio = models.TextField(blank=True)
     photo = models.ImageField(upload_to='photos/', blank=True, null=True)
     linkedin_link = models.URLField(blank=True, null=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.full_name

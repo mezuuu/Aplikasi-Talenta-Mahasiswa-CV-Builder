@@ -13,9 +13,9 @@ export default function EducationForm() {
             {/* Header */}
             <div>
                 <h1 className="text-2xl font-bold text-gray-800">
-                    <span className="text-sky-500">Please enter</span> your education information
+                    <span className="text-[#2596be]">Please enter</span> your education information
                 </h1>
-                <p className="text-gray-500 mt-1">
+                <p className="text-gray-500 mt-1 text-sm">
                     Write your schools or courses you finished.
                 </p>
             </div>
@@ -50,7 +50,7 @@ export default function EducationForm() {
                         {edu.degree || '(Not specified)'}, {edu.school || 'Unknown'}
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
                         {/* School */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -60,8 +60,8 @@ export default function EducationForm() {
                                 type="text"
                                 value={edu.school}
                                 onChange={(e) => handleChange(edu.id, 'school', e.target.value)}
-                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
-                                placeholder="University Name"
+                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2596be] focus:border-[#2596be] outline-none transition-all"
+                                placeholder=""
                             />
                         </div>
 
@@ -74,8 +74,8 @@ export default function EducationForm() {
                                 type="text"
                                 value={edu.degree}
                                 onChange={(e) => handleChange(edu.id, 'degree', e.target.value)}
-                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
-                                placeholder="Bachelor of Science"
+                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2596be] focus:border-[#2596be] outline-none transition-all"
+                                placeholder=""
                             />
                         </div>
 
@@ -88,8 +88,8 @@ export default function EducationForm() {
                                 type="text"
                                 value={edu.graduationDate}
                                 onChange={(e) => handleChange(edu.id, 'graduationDate', e.target.value)}
-                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
-                                placeholder="May 2024"
+                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2596be] focus:border-[#2596be] outline-none transition-all"
+                                placeholder=""
                             />
                         </div>
 
@@ -102,8 +102,8 @@ export default function EducationForm() {
                                 type="text"
                                 value={edu.city}
                                 onChange={(e) => handleChange(edu.id, 'city', e.target.value)}
-                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
-                                placeholder="Surakarta"
+                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2596be] focus:border-[#2596be] outline-none transition-all"
+                                placeholder=""
                             />
                         </div>
                     </div>
@@ -117,8 +117,8 @@ export default function EducationForm() {
                             value={edu.description}
                             onChange={(e) => handleChange(edu.id, 'description', e.target.value)}
                             rows={4}
-                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all resize-none"
-                            placeholder="Describe your achievements, relevant coursework, GPA, etc."
+                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2596be] focus:border-[#2596be] outline-none transition-all resize-none"
+                            placeholder=""
                         />
                     </div>
 
@@ -135,7 +135,7 @@ export default function EducationForm() {
             {/* Add Button */}
             <button
                 onClick={addEducation}
-                className="flex items-center gap-2 text-sky-500 hover:text-sky-600 font-medium transition-colors"
+                className="flex items-center gap-2 text-[#2596be] hover:text-[#1e7a9a] font-medium transition-colors"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -183,7 +183,7 @@ export default function EducationForm() {
 
                 <button
                     onClick={nextStep}
-                    className="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-6 py-2.5 rounded-lg font-medium transition-colors duration-200"
+                    className="flex items-center gap-2 bg-[#2596be] hover:bg-[#1e7a9a] text-white px-6 py-2.5 rounded-lg font-medium transition-colors duration-200"
                 >
                     Next to Skills
                     <svg

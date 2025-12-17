@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import React from 'react';
 import { CVProvider, useCV } from './CVContext';
 import StepIndicator from './stepIndicator';
 import Preview from './Preview';
@@ -31,46 +32,26 @@ function CVBuilderContent() {
     const handleLogout = () => {
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
+        localStorage.removeItem('user_info');
         window.location.href = '/login';
     };
 
     return (
-        <div className="min-h-screen bg-white">
-            <div className="flex flex-col lg:flex-row">
+        <div className="min-h-screen bg-white flex flex-col">
+            <div className="flex flex-col lg:flex-row flex-1">
                 {/* Left Side - Form Area */}
-                <div className="w-full lg:w-[55%] min-h-screen p-6 lg:p-10 overflow-y-auto relative pb-24">
-                    {/* Step Indicator */}
-                    <div className="max-w-xl">
-                        <StepIndicator />
-                    </div>
+                <div className="w-full lg:w-[55%] min-h-screen flex flex-col">
+                    {/* Step Indicator Header */}
+                    <StepIndicator />
 
                     {/* Form Content */}
-                    <div className="max-w-xl mt-6">
-                        <CurrentStepComponent previewRef={previewRef} />
+                    <div className="flex-1 p-6 lg:p-10 lg:pr-12 overflow-y-auto">
+                        <CurrentStepComponent previewRef={previewRef} handleLogout={handleLogout} />
                     </div>
 
-                    {/* Logout Button - Fixed at bottom left */}
-                    <div className="fixed bottom-6 left-6 z-50">
-                        <button
-                            onClick={handleLogout}
-                            className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2.5 rounded-lg shadow-lg transition-all duration-200 font-medium"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                strokeWidth={2}
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                                />
-                            </svg>
-                            Logout
-                        </button>
+                    {/* Footer */}
+                    <div className="bg-[#303f9f] text-white py-3 px-6">
+                        <span className="font-bold text-lg">Talenta UMS</span>
                     </div>
                 </div>
 
@@ -96,7 +77,7 @@ function MobilePreviewButton({ previewRef }) {
         <>
             <button
                 onClick={() => setShowPreview(true)}
-                className="bg-sky-500 hover:bg-sky-600 text-white p-4 rounded-full shadow-lg transition-all"
+                className="bg-[#2596be] hover:bg-[#1e7a9a] text-white p-4 rounded-full shadow-lg transition-all"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -148,9 +129,6 @@ function MobilePreviewButton({ previewRef }) {
         </>
     );
 }
-
-// Import React for useState in MobilePreviewButton
-import React from 'react';
 
 // Main component with Provider wrapper
 export default function CVBuilder() {

@@ -14,14 +14,18 @@ export default function StepIndicator() {
     const { currentStep } = state;
 
     return (
-        <div className="w-full mb-8">
+        <div className="bg-[#303f9f] py-4 px-6">
             {/* Step Labels */}
-            <div className="flex justify-between mb-2 px-2">
+            <div className="flex justify-between items-center mb-3 max-w-xl mx-auto">
                 {steps.map((step) => (
                     <button
                         key={step.index}
                         onClick={() => setStep(step.index)}
-                        className={`text-sm font-medium transition-colors duration-200 hover:text-sky-500 ${step.index <= currentStep ? 'text-sky-500' : 'text-gray-400'
+                        className={`text-sm font-medium transition-colors duration-200 hover:text-white ${step.index === currentStep
+                            ? 'text-[#ffffff]'
+                            : step.index < currentStep
+                                ? 'text-white'
+                                : 'text-gray-300'
                             }`}
                     >
                         {step.label}
@@ -30,13 +34,13 @@ export default function StepIndicator() {
             </div>
 
             {/* Progress Line with Dots */}
-            <div className="relative flex items-center justify-between">
+            <div className="relative flex items-center justify-between max-w-xl mx-auto">
                 {/* Background Line */}
-                <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -translate-y-1/2" />
+                <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-[#5c6bc0] -translate-y-1/2" />
 
                 {/* Active Line */}
                 <div
-                    className="absolute top-1/2 left-0 h-0.5 bg-sky-500 -translate-y-1/2 transition-all duration-300"
+                    className="absolute top-1/2 left-0 h-0.5 bg-[#ffffff] -translate-y-1/2 transition-all duration-300"
                     style={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}
                 />
 
@@ -46,8 +50,8 @@ export default function StepIndicator() {
                         key={step.index}
                         onClick={() => setStep(step.index)}
                         className={`relative z-10 w-3 h-3 rounded-full border-2 transition-all duration-200 ${step.index <= currentStep
-                                ? 'bg-sky-500 border-sky-500'
-                                : 'bg-white border-gray-300 hover:border-sky-300'
+                            ? 'bg-[#ffffff] border-[#ffffff]'
+                            : 'bg-[#5c6bc0] border-[#7986cb] hover:border-[#2596be]'
                             }`}
                     />
                 ))}

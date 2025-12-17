@@ -13,10 +13,10 @@ export default function ExperienceForm() {
             {/* Header */}
             <div>
                 <h1 className="text-2xl font-bold text-gray-800">
-                    <span className="text-sky-500">Tell us</span> about your experience
+                    <span className="text-[#2596be]">Tell us</span> about your experience
                 </h1>
-                <p className="text-gray-500 mt-1">
-                    Write your jobs (recent ones) with sort points of your did.
+                <p className="text-gray-500 mt-1 text-sm">
+                    Write your jobs (recent ones) with sort poins of your did.
                 </p>
             </div>
 
@@ -26,7 +26,7 @@ export default function ExperienceForm() {
             {/* Add Button */}
             <button
                 onClick={addExperience}
-                className="flex items-center gap-2 text-sky-500 hover:text-sky-600 font-medium transition-colors"
+                className="flex items-center gap-2 text-[#2596be] hover:text-[#1e7a9a] font-medium transition-colors"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +68,7 @@ export default function ExperienceForm() {
 
                     <div className="text-sm font-medium text-gray-500">Experience {index + 1}</div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
                         {/* Employer */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -78,8 +78,8 @@ export default function ExperienceForm() {
                                 type="text"
                                 value={exp.employer}
                                 onChange={(e) => handleChange(exp.id, 'employer', e.target.value)}
-                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
-                                placeholder="Company Name"
+                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2596be] focus:border-[#2596be] outline-none transition-all"
+                                placeholder=""
                             />
                         </div>
 
@@ -92,8 +92,8 @@ export default function ExperienceForm() {
                                 type="text"
                                 value={exp.jobTitle}
                                 onChange={(e) => handleChange(exp.id, 'jobTitle', e.target.value)}
-                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
-                                placeholder="Software Engineer"
+                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2596be] focus:border-[#2596be] outline-none transition-all"
+                                placeholder=""
                             />
                         </div>
 
@@ -106,8 +106,8 @@ export default function ExperienceForm() {
                                 type="text"
                                 value={exp.city}
                                 onChange={(e) => handleChange(exp.id, 'city', e.target.value)}
-                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
-                                placeholder="Jakarta"
+                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2596be] focus:border-[#2596be] outline-none transition-all"
+                                placeholder=""
                             />
                         </div>
 
@@ -120,8 +120,8 @@ export default function ExperienceForm() {
                                 type="text"
                                 value={exp.startDate}
                                 onChange={(e) => handleChange(exp.id, 'startDate', e.target.value)}
-                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
-                                placeholder="Jan 2020"
+                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2596be] focus:border-[#2596be] outline-none transition-all"
+                                placeholder=""
                             />
                         </div>
 
@@ -135,9 +135,9 @@ export default function ExperienceForm() {
                                 value={exp.endDate}
                                 onChange={(e) => handleChange(exp.id, 'endDate', e.target.value)}
                                 disabled={exp.current}
-                                className={`w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all ${exp.current ? 'bg-gray-100 text-gray-400' : ''
+                                className={`w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2596be] focus:border-[#2596be] outline-none transition-all ${exp.current ? 'bg-gray-100 text-gray-400' : ''
                                     }`}
-                                placeholder="Dec 2023"
+                                placeholder=""
                             />
                         </div>
 
@@ -148,7 +148,7 @@ export default function ExperienceForm() {
                                     type="checkbox"
                                     checked={exp.current}
                                     onChange={(e) => handleChange(exp.id, 'current', e.target.checked)}
-                                    className="w-4 h-4 text-sky-500 border-gray-300 rounded focus:ring-sky-500"
+                                    className="w-4 h-4 text-[#2596be] border-gray-300 rounded focus:ring-[#2596be]"
                                 />
                                 <span className="text-sm text-gray-700">I currently work here</span>
                             </label>
@@ -164,8 +164,8 @@ export default function ExperienceForm() {
                             value={exp.description}
                             onChange={(e) => handleChange(exp.id, 'description', e.target.value)}
                             rows={3}
-                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all resize-none"
-                            placeholder="Describe your responsibilities and achievements..."
+                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2596be] focus:border-[#2596be] outline-none transition-all resize-none"
+                            placeholder=""
                         />
                     </div>
                 </div>
@@ -203,9 +203,9 @@ export default function ExperienceForm() {
 
                 <button
                     onClick={nextStep}
-                    className="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-6 py-2.5 rounded-lg font-medium transition-colors duration-200"
+                    className="flex items-center gap-2 bg-[#2596be] hover:bg-[#1e7a9a] text-white px-6 py-2.5 rounded-lg font-medium transition-colors duration-200"
                 >
-                    Next to Education
+                    Next to Experience
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5"

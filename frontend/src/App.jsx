@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import TalentDetail from "./pages/TalentDetail";
 import CVBuilder from "./mahasiswa/CVBuilder";
+import AdminDashboard from "./admin/AdminDashboard";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/talent/:id" element={<TalentDetail />} />
         <Route path="/cv-builder" element={<CVBuilder />} />
       </Routes>
