@@ -25,6 +25,13 @@ class StudentViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ['full_name', 'prodi', 'skills__name']
 
+    def get_queryset(self):
+        # Admin gets all students
+        if self.request.user.is_authenticated and self.request.user.is_staff:
+            return StudentProfile.objects.all()
+        # Public only gets active students
+        return StudentProfile.objects.filter(is_active=True)
+
     @action(detail=False, methods=['get', 'put', 'patch'], permission_classes=[permissions.IsAuthenticated])
     def me(self, request):
         try:
