@@ -1,8 +1,7 @@
 import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react";
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext } from "react";
 import { FaBookReader } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
-import Logo from "../../assets/logo-Miaw-Family.png";
 
 const SidebarContext = createContext();
 
@@ -60,11 +59,9 @@ export default function Sidebar({ expanded, setExpanded }) {
         </SidebarContext.Provider>
         {/* Footer Admin Pengguna */}
         <div className="border-t border-gray-700 flex p-3 text-white">
-          <img
-            src={Logo}
-            alt="Foto Profil John Doe"
-            className="w-10 h-10 rounded-full object-cover"
-          />
+          <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center">
+            <span className="text-white font-bold">A</span>
+          </div>
           <div
             className={`
               flex justify-between items-center
@@ -97,26 +94,23 @@ export function SidebarItem({ icon, text, active, alert, onClick }) {
         relative flex items-center py-2 px-3 my-1
         font-medium rounded-md cursor-pointer
         transition-colors group
-        ${
-          active
-            ? "bg-gradient-to-tr from-indigo-500 to-indigo-400 text-white"
-            : "hover:bg-gray-700 text-gray-300" // Warna kontras untuk tema gelap
+        ${active
+          ? "bg-gradient-to-tr from-indigo-500 to-indigo-400 text-white"
+          : "hover:bg-gray-700 text-gray-300" // Warna kontras untuk tema gelap
         }
       `}
     >
       {icon}
       <span
-        className={`overflow-hidden transition-all ${
-          expanded ? "w-52 ml-3" : "w-0"
-        }`}
+        className={`overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"
+          }`}
       >
         {text}
       </span>
       {alert && (
         <div
-          className={`absolute right-2 w-2 h-2 rounded-full bg-indigo-400 ${
-            expanded ? "" : "top-2"
-          }`}
+          className={`absolute right-2 w-2 h-2 rounded-full bg-indigo-400 ${expanded ? "" : "top-2"
+            }`}
         />
       )}
 

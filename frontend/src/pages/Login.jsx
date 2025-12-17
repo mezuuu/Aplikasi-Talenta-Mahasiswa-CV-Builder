@@ -12,7 +12,17 @@ export default function Login() {
       const res = await api.post("/auth/jwt/create/", formData);
       localStorage.setItem("access_token", res.data.access);
       localStorage.setItem("refresh_token", res.data.refresh);
-      navigate("/dashboard");
+
+      // Fetch user info to check role
+      const userRes = await api.get("/api/users/me/");
+      const user = userRes.data;
+
+      // Redirect based on role
+      if (user.is_staff || user.is_superuser) {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/dashboard");
+      }
     } catch (error) {
       alert("Login Gagal! Cek username/password.");
     }
