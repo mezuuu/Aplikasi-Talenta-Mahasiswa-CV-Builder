@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import TalentDetail from "./pages/TalentDetail";
 import AdminDashboard from "./admin/AdminDashboard";
+import CVBuilder from "./mahasiswa/CVBuilder";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/talent/:id" element={<TalentDetail />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/mahasiswa" element={<CVBuilder />} />
       </Routes>
     </BrowserRouter>
   );
