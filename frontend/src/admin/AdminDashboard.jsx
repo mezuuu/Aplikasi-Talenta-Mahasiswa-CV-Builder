@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 import Sidebar from "./sidebar";
-import { FiChevronRight, FiSearch, FiDownload, FiFilter } from "react-icons/fi";
+import { FiChevronRight, FiSearch, FiDownload, FiFilter, FiChevronDown } from "react-icons/fi";
 
 export default function AdminDashboard() {
     const [expanded, setExpanded] = useState(true);
@@ -13,6 +13,7 @@ export default function AdminDashboard() {
     const [togglingId, setTogglingId] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [sortOrder, setSortOrder] = useState("default");
+    const [isSortOpen, setIsSortOpen] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -163,23 +164,57 @@ export default function AdminDashboard() {
                             Export
                         </button>
 
-                        {/* Sort */}
-                        <div className="relative group">
-                            <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-300 shadow-sm cursor-pointer hover:bg-gray-50">
+                        {/* Custom Sort Dropdown */}
+                        <div className="relative">
+                            <button
+                                onClick={() => setIsSortOpen(!isSortOpen)}
+                                className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-300 shadow-sm hover:bg-gray-50 transition-colors"
+                            >
                                 <FiFilter className="text-gray-500" />
-                                <select
-                                    value={sortOrder}
-                                    onChange={(e) => setSortOrder(e.target.value)}
-                                    className="appearance-none bg-transparent border-none focus:outline-none text-gray-700 font-medium cursor-pointer pr-4"
-                                    style={{ backgroundImage: 'none' }}
-                                >
-                                    <option value="default">Sort: Default</option>
-                                    <option value="asc">Name (A-Z)</option>
-                                    <option value="desc">Name (Z-A)</option>
-                                    <option value="active_first">Active First</option>
-                                    <option value="inactive_first">Inactive First</option>
-                                </select>
-                            </div>
+                                <span className="font-medium text-gray-700 min-w-[100px] text-left">
+                                    {sortOrder === "default" && "Sort: Default"}
+                                    {sortOrder === "asc" && "Name (A-Z)"}
+                                    {sortOrder === "desc" && "Name (Z-A)"}
+                                    {sortOrder === "active_first" && "Active First"}
+                                    {sortOrder === "inactive_first" && "Inactive First"}
+                                </span>
+                                <FiChevronDown className={`text-gray-400 transition-transform ${isSortOpen ? 'rotate-180' : ''}`} />
+                            </button>
+
+                            {/* Dropdown Menu */}
+                            {isSortOpen && (
+                                <>
+                                    <div
+                                        className="fixed inset-0 z-10"
+                                        onClick={() => setIsSortOpen(false)}
+                                    />
+                                    <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-20 overflow-hidden">
+                                        <div className="py-1">
+                                            {[
+                                                { value: "default", label: "Sort: Default" },
+                                                { value: "asc", label: "Name (A-Z)" },
+                                                { value: "desc", label: "Name (Z-A)" },
+                                                { value: "active_first", label: "Active First" },
+                                                { value: "inactive_first", label: "Inactive First" }
+                                            ].map((option) => (
+                                                <button
+                                                    key={option.value}
+                                                    className={`
+                                                        w-full text-left px-4 py-3 hover:bg-blue-50 transition-colors
+                                                        ${sortOrder === option.value ? 'text-blue-600 font-bold bg-blue-50' : 'text-gray-700'}
+                                                    `}
+                                                    onClick={() => {
+                                                        setSortOrder(option.value);
+                                                        setIsSortOpen(false);
+                                                    }}
+                                                >
+                                                    {option.label}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
