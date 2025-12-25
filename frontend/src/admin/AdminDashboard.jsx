@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 import Sidebar from "./sidebar";
+<<<<<<< HEAD
 import { FiChevronRight, FiSearch, FiDownload, FiFilter, FiChevronDown } from "react-icons/fi";
+=======
+import { FiChevronRight } from "react-icons/fi";
+>>>>>>> ed137fdf8ac58e2f8406a1928aa11bd0af1376da
 
 export default function AdminDashboard() {
     const [expanded, setExpanded] = useState(true);
@@ -11,9 +15,12 @@ export default function AdminDashboard() {
     const [loading, setLoading] = useState(true);
     const [selectedStudent, setSelectedStudent] = useState(null);
     const [togglingId, setTogglingId] = useState(null);
+<<<<<<< HEAD
     const [searchTerm, setSearchTerm] = useState("");
     const [sortOrder, setSortOrder] = useState("default");
     const [isSortOpen, setIsSortOpen] = useState(false);
+=======
+>>>>>>> ed137fdf8ac58e2f8406a1928aa11bd0af1376da
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -48,11 +55,14 @@ export default function AdminDashboard() {
             setStudents(students.map(s =>
                 s.id === studentId ? { ...s, is_active: res.data.is_active } : s
             ));
+<<<<<<< HEAD
 
             // Update selected student if it's the one being toggled
             if (selectedStudent?.id === studentId) {
                 setSelectedStudent(prev => ({ ...prev, is_active: res.data.is_active }));
             }
+=======
+>>>>>>> ed137fdf8ac58e2f8406a1928aa11bd0af1376da
         } catch (error) {
             console.error("Error toggling student status", error);
         } finally {
@@ -64,6 +74,7 @@ export default function AdminDashboard() {
         setSelectedStudent(selectedStudent?.id === student.id ? null : student);
     };
 
+<<<<<<< HEAD
     const handleExport = () => {
         const headers = ["ID", "Name", "NIM", "Prodi", "Status"];
         const csvContent = [
@@ -107,6 +118,8 @@ export default function AdminDashboard() {
         return 0;
     });
 
+=======
+>>>>>>> ed137fdf8ac58e2f8406a1928aa11bd0af1376da
     if (loading) {
         return (
             <div className="flex justify-center items-center h-screen bg-gray-100">
@@ -134,6 +147,7 @@ export default function AdminDashboard() {
                     <p className="text-gray-600">Selamat datang, {user?.username}</p>
                 </div>
 
+<<<<<<< HEAD
                 {/* Controls */}
                 <div className="max-w-4xl mx-auto mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
                     {/* Search with Integrated Count */}
@@ -222,6 +236,11 @@ export default function AdminDashboard() {
                 {/* Student Cards */}
                 <div className="max-w-4xl mx-auto space-y-4">
                     {filteredStudents.map((student) => (
+=======
+                {/* Student Cards */}
+                <div className="max-w-4xl mx-auto space-y-4">
+                    {students.map((student) => (
+>>>>>>> ed137fdf8ac58e2f8406a1928aa11bd0af1376da
                         <div
                             key={student.id}
                             onClick={() => handleCardClick(student)}
@@ -281,7 +300,11 @@ export default function AdminDashboard() {
                         </div>
                     ))}
 
+<<<<<<< HEAD
                     {filteredStudents.length === 0 && (
+=======
+                    {students.length === 0 && (
+>>>>>>> ed137fdf8ac58e2f8406a1928aa11bd0af1376da
                         <div className="bg-white rounded-2xl p-8 text-center text-gray-500">
                             Belum ada data mahasiswa
                         </div>
@@ -311,8 +334,13 @@ export default function AdminDashboard() {
                                         {selectedStudent.full_name}
                                     </h2>
                                     <span className={`px-3 py-1 rounded-full text-sm font-medium ${selectedStudent.is_active !== false
+<<<<<<< HEAD
                                         ? 'bg-green-100 text-green-800'
                                         : 'bg-red-100 text-red-800'
+=======
+                                            ? 'bg-green-100 text-green-800'
+                                            : 'bg-red-100 text-red-800'
+>>>>>>> ed137fdf8ac58e2f8406a1928aa11bd0af1376da
                                         }`}>
                                         {selectedStudent.is_active !== false ? 'Aktif' : 'Nonaktif'}
                                     </span>

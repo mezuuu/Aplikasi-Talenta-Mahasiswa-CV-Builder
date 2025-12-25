@@ -71,6 +71,7 @@ export default function Register() {
               type="text"
               name="username"
               required
+              value={formData.username}
               className="mt-1 w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               onChange={handleChange}
             />
@@ -84,6 +85,7 @@ export default function Register() {
               type="email"
               name="email"
               required
+              value={formData.email}
               className="mt-1 w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               onChange={handleChange}
             />
@@ -97,6 +99,7 @@ export default function Register() {
               type="password"
               name="password"
               required
+              value={formData.password}
               className="mt-1 w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               onChange={handleChange}
             />
@@ -113,6 +116,7 @@ export default function Register() {
               type="password"
               name="re_password"
               required
+              value={formData.re_password}
               className="mt-1 w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               onChange={handleChange}
             />
@@ -121,9 +125,8 @@ export default function Register() {
           <button
             type="submit"
             disabled={isLoading}
-            className={`w-full text-white p-2 rounded font-semibold transition ${
-              isLoading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
-            }`}
+            className={`w-full text-white p-2 rounded font-semibold transition ${isLoading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
+              }`}
           >
             {isLoading ? "Memproses..." : "Daftar Sekarang"}
           </button>
