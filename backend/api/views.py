@@ -4,13 +4,6 @@ from rest_framework.response import Response
 from .models import StudentProfile, Skill, Experience
 from .serializers import StudentProfileSerializer, SkillSerializer, ExperienceSerializer
 
-<<<<<<< HEAD
-
-@api_view(['GET'])
-@permission_classes([permissions.IsAuthenticated])
-def get_current_user(request):
-    """Return current user info including role (is_staff)"""
-=======
 @api_view(['GET'])
 @permission_classes([permissions.IsAuthenticated])
 def get_user_info(request):
@@ -28,7 +21,6 @@ def get_user_info(request):
 @permission_classes([permissions.IsAuthenticated])
 def get_current_user(request):
     """Get current user info for admin dashboard - endpoint /api/users/me/"""
->>>>>>> ed137fdf8ac58e2f8406a1928aa11bd0af1376da
     user = request.user
     return Response({
         'id': user.id,
@@ -72,7 +64,6 @@ class StudentViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['post'], permission_classes=[permissions.IsAdminUser])
     def toggle_active(self, request, pk=None):
-<<<<<<< HEAD
         """Toggle the is_active status of a student profile (Admin only)"""
         student = self.get_object()
         student.is_active = not student.is_active
@@ -82,17 +73,6 @@ class StudentViewSet(viewsets.ModelViewSet):
             'full_name': student.full_name,
             'is_active': student.is_active,
             'message': f"Profil {'diaktifkan' if student.is_active else 'dinonaktifkan'}"
-=======
-        """Toggle student active status (admin only)"""
-        student = self.get_object()
-        # Toggle is_active field - default to True if not set
-        current_status = getattr(student, 'is_active', True)
-        student.is_active = not current_status
-        student.save()
-        return Response({
-            'id': student.id,
-            'is_active': student.is_active
->>>>>>> ed137fdf8ac58e2f8406a1928aa11bd0af1376da
         })
 
     def perform_create(self, serializer):
