@@ -35,6 +35,17 @@ export default function FinishForm({ handleLogout }) {
         updateContact({ [name]: value });
     };
 
+    // Helper function to convert base64 to Blob
+    const base64ToBlob = (base64, mimeType) => {
+        const byteString = atob(base64.split(',')[1]);
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        return new Blob([ab], { type: mimeType });
+    };
+
     // Save biodata to backend
     const handleSaveBiodata = async () => {
         setIsSaving(true);
@@ -43,22 +54,35 @@ export default function FinishForm({ handleLogout }) {
         try {
             const fullName = `${contact.firstName} ${contact.lastName}`.trim();
 
-            // Save/update student profile
-            const profileData = {
-                full_name: fullName,
-                nim: about.nim || contact.nim || '',
-                prodi: about.prodi || contact.prodi || 'Informatika',
-                bio: about.summary || '',
-                linkedin_link: contact.linkedin || '',
-            };
+            // Create FormData for multipart upload (needed for photo)
+            const formData = new FormData();
+            formData.append('full_name', fullName);
+            formData.append('nim', about.nim || contact.nim || '');
+            formData.append('prodi', about.prodi || contact.prodi || 'Informatika');
+            formData.append('bio', about.summary || '');
+            formData.append('linkedin_link', contact.linkedin || '');
+
+            // Add photo if exists
+            if (contact.photo) {
+                // Extract mime type from base64 string
+                const mimeMatch = contact.photo.match(/data:(.*?);base64,/);
+                const mimeType = mimeMatch ? mimeMatch[1] : 'image/jpeg';
+                const photoBlob = base64ToBlob(contact.photo, mimeType);
+                const extension = mimeType.split('/')[1] || 'jpg';
+                formData.append('photo', photoBlob, `profile.${extension}`);
+            }
 
             // Try to update existing profile first, if not exist create new
             try {
-                await api.patch('/api/students/me/', profileData);
+                await api.patch('/api/students/me/', formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' }
+                });
             } catch (err) {
                 // If profile doesn't exist, create new one
                 if (err.response && err.response.status === 404) {
-                    await api.post('/api/students/', profileData);
+                    await api.post('/api/students/', formData, {
+                        headers: { 'Content-Type': 'multipart/form-data' }
+                    });
                 } else {
                     throw err;
                 }

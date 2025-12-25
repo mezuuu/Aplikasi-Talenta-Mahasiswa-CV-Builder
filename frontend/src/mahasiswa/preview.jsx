@@ -49,7 +49,7 @@ const Preview = forwardRef(function Preview({ forPrint = false }, ref) {
                     {/* Profile Photo */}
                     <div className="flex justify-center" style={{ marginBottom: forPrint ? '18mm' : '24px' }}>
                         <div
-                            className="rounded-full border-4 border-[#3498db] flex items-center justify-center overflow-hidden bg-[#3498db]"
+                            className="rounded-full flex items-center justify-center overflow-hidden bg-[#3498db]"
                             style={{
                                 width: forPrint ? '30mm' : '75px',
                                 height: forPrint ? '30mm' : '75px'
